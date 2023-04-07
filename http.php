@@ -1,5 +1,5 @@
 <?php
-class Tegstop {
+class HTTP {
 	public function __construct() { }
 
 	public function get( string $url, array $headers = [] ) {

@@ -1,6 +1,7 @@
-# Changelog: tegstop
+# Changelog
 
 ## ????
+- Rename to HTTP
 - Lowercase all response header names
 - Set types for function args
 - Add support for custom request headers
