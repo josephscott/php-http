@@ -12,9 +12,21 @@ function http_parse_headers( array $headers ) {
     return $parsed;
 }
 
-function http_get( string $url ) {
+function http_get( string $url, array $headers = [] ) {
 	$response = [];
-	$body = file_get_contents( $url );
+
+	$options = [
+		'http' => [
+			'method' => 'GET',
+			'header' => ''
+		]
+	];
+	foreach ( $headers as $header_name => $header_value ) {
+		$options['http']['header'] .= "$header_name: $header_value\r\n";
+	}
+
+    $context = stream_context_create( $options );
+	$body = file_get_contents( $url, false, $context );
 
 	$response['error'] = false;
 	$response['headers'] = http_parse_headers( $http_response_header );
@@ -28,16 +40,19 @@ function http_get( string $url ) {
 	return $response;
 }
 
-function http_post( string $url, array $data ) {
+function http_post( string $url, array $headers = [], array $data = [] ) {
 	$response = [];
 
 	$options = [
 		'http' => [
 			'method' => 'POST',
-			'header' => 'Content-Type: application/x-www-form-urlencoded',
+			'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
 			'content' => http_build_query( $data ),
 		],
 	];
+	foreach ( $headers as $header_name => $header_value ) {
+		$options['http']['header'] .= "$header_name: $header_value\r\n";
+	}
 
     $context = stream_context_create( $options );
 	$body = file_get_contents( $url, false, $context );
