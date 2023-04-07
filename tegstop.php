@@ -5,7 +5,7 @@ function http_parse_headers( $headers ) {
 	foreach ( $headers as $header ) {
 		$parts = explode( ':', $header, 2 );
 		if ( count( $parts ) === 2 ) {
-			$parsed[ trim( $parts[0] ) ] = trim( $parts[1] );
+			$parsed[ strtolower( trim( $parts[0] ) ) ] = trim( $parts[1] );
 		}
 	}
 
