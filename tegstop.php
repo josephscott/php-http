@@ -1,5 +1,5 @@
 <?php
-function http_parse_headers( $headers ) {
+function http_parse_headers( array $headers ) {
 	$parsed = [];
 
 	foreach ( $headers as $header ) {
@@ -12,7 +12,7 @@ function http_parse_headers( $headers ) {
     return $parsed;
 }
 
-function http_get( $url ) {
+function http_get( string $url ) {
 	$response = [];
 	$body = file_get_contents( $url );
 
@@ -28,7 +28,7 @@ function http_get( $url ) {
 	return $response;
 }
 
-function http_post( $url, $data ) {
+function http_post( string $url, array $data ) {
 	$response = [];
 
 	$options = [
