@@ -1,0 +1,8 @@
+# PHPUnit / Pest
+.phpunit.result.cache
+phpunit.xml
+phpstan.neon
+
+# Vendor files
+vendor/*
+composer.lock
