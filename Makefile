@@ -5,6 +5,7 @@ SHELL = bash
 test:
 	@echo
 	@echo "--> phpstan"
+	@echo
 	./vendor/bin/phpstan
 
 .PHONY: all
