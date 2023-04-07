@@ -4,18 +4,7 @@ class HTTP {
 
 	public function get( string $url, array $headers = [] ) {
 		$response = [];
-
-		$options = [
-			'http' => [
-				'method' => 'GET',
-				'header' => ''
-			]
-		];
-		foreach ( $headers as $header_name => $header_value ) {
-			$options['http']['header'] .= "$header_name: $header_value\r\n";
-		}
-
-		$context = stream_context_create( $options );
+		$context = $this->build_context( 'GET' );
 		$body = file_get_contents( $url, false, $context );
 
 		$response['error'] = false;
@@ -32,21 +21,7 @@ class HTTP {
 
 	public function post( string $url, array $headers = [], array $data = [] ) {
 		$response = [];
-
-		$options = [
-			'http' => [
-				'method' => 'POST',
-				'header' => '',
-				'content' => http_build_query( $data ),
-			],
-		];
-		$options['http']['header'] .= 'Content-Type: '
-			. "application/x-www-form-urlencoded\r\n";
-		foreach ( $headers as $header_name => $header_value ) {
-			$options['http']['header'] .= "$header_name: $header_value\r\n";
-		}
-
-		$context = stream_context_create( $options );
+		$context = $this->build_context( method: 'POST', body: $data );
 		$body = file_get_contents( $url, false, $context );
 
 		$response['error'] = false;
@@ -62,6 +37,34 @@ class HTTP {
 	}
 
 	/* Private */
+
+	private function build_context(
+		string $method,
+		array $headers = [],
+		array $body = []
+	) {
+		$options = [
+			'http' => [
+				'method' => $method,
+				'header' => '',
+			]
+		];
+
+		if ( $method === 'POST' && !isset( $headers['Content-Type'] ) ) {
+			$headers['Content-Type'] = 'application/x-www-form-urlencoded';
+		}
+
+		foreach ( $headers as $header_name => $header_value ) {
+			$options['http']['header'] .= "$header_name: $header_value\r\n";
+		}
+
+		if ( !empty( $body ) ) {
+			$options['http']['content'] = http_build_query( $body );
+		}
+
+		$context = stream_context_create( $options );
+		return $context;
+	}
 
 	private function parse_headers( array $headers ) {
 		$parsed = [];
