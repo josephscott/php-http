@@ -1,5 +1,10 @@
 <?php
 class HTTP {
+	public $default_headers = [
+		'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 php-http/0.0.2',
+		'accept' => '*/*',
+	];
+
 	public function __construct() { }
 
 	public function get( string $url, array $headers = [] ) {
@@ -49,6 +54,8 @@ class HTTP {
 				'header' => '',
 			]
 		];
+
+		$headers = array_merge( $this->default_headers, $headers );
 
 		if ( $method === 'POST' && !isset( $headers['Content-Type'] ) ) {
 			$headers['Content-Type'] = 'application/x-www-form-urlencoded';
