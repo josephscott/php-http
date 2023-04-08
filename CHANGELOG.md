@@ -1,6 +1,6 @@
 # Changelog
 
-## ????
+## 0.0.2 - 2023-04-08
 - Rename to HTTP
 - Lowercase all response header names
 - Set types for function args
