@@ -90,13 +90,19 @@ class HTTP {
 
 		$response_code = array_shift( $headers );
 		if ( preg_match( '#HTTP/[0-9\.]+\s+([0-9]+)#', $response_code, $matches ) ) {
-			$headers[] = 'response_code: ' . (int) $matches[1];
+			$headers[] = 'response_code: ' . intval( $matches[1] );
 		}
+		var_export( $headers );
 
 		foreach ( $headers as $header ) {
 			$parts = explode( ':', $header, 2 );
 			if ( count( $parts ) === 2 ) {
-				$parsed[ strtolower( trim( $parts[0] ) ) ] = trim( $parts[1] );
+				$parts[1] = trim( $parts[1] );
+				if ( is_numeric( $parts[1] ) ) {
+					$parts[1] = (int) $parts[1];
+				}
+
+				$parsed[ strtolower( trim( $parts[0] ) ) ] = $parts[1];
 			}
 		}
 
