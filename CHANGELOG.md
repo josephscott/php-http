@@ -1,5 +1,9 @@
 # Changelog
 
+## ????
+- Provide default HTTP options
+- Default to HTTP/1.1
+
 ## 0.0.2 - 2023-04-08
 - Rename to HTTP
 - Lowercase all response header names

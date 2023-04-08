@@ -2,6 +2,12 @@
 declare( strict_types = 1 );
 
 class HTTP {
+	public $default_options = [
+		'protocol_version' => 1.1,
+		'method' => 'GET',
+		'header' => '',
+	];
+
 	public $default_headers = [
 		'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 php-http/0.0.2',
 		'accept' => '*/*',
@@ -60,12 +66,8 @@ class HTTP {
 		array $headers = [],
 		array $body = []
 	) {
-		$options = [
-			'http' => [
-				'method' => $method,
-				'header' => '',
-			]
-		];
+		$options = [ 'http' => $this->default_options ];
+		$options['http']['method'] = $method;
 
 		$headers = array_merge( $this->default_headers, $headers );
 
@@ -92,7 +94,6 @@ class HTTP {
 		if ( preg_match( '#HTTP/[0-9\.]+\s+([0-9]+)#', $response_code, $matches ) ) {
 			$headers[] = 'response_code: ' . intval( $matches[1] );
 		}
-		var_export( $headers );
 
 		foreach ( $headers as $header ) {
 			$parts = explode( ':', $header, 2 );
