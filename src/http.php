@@ -104,6 +104,15 @@ class HTTP {
 	}
 
 	private function set_error_handler() {
-		set_error_handler( function () { } );
+		set_error_handler(
+			function (
+				int $errno,
+				string $errfile,
+				string $errline,
+				int $errcontext
+			) : bool|null {
+				return null;
+			}
+		);
 	}
 }
