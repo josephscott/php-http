@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 class HTTP {
 	public $default_headers = [
 		'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 php-http/0.0.2',
