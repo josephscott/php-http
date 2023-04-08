@@ -6,6 +6,7 @@ class HTTP {
 		'protocol_version' => 1.1,
 		'method' => 'GET',
 		'header' => '',
+		'ignore_errors' => true,
 	];
 
 	public $default_headers = [
@@ -19,19 +20,21 @@ class HTTP {
 		$response = [];
 		$context = $this->build_context( 'GET' );
 
-		$this->set_error_handler();
 		$body = file_get_contents(
 			filename: $url,
 			use_include_path: false,
 			context: $context
 		);
-		restore_error_handler();
 
 		$response['error'] = false;
 		$response['headers'] = self::parse_headers( $http_response_header );
 		$response['body'] = $body;
 
-		if ( $body === false ) {
+		if (
+			$body === false
+			|| $response['headers']['response_code'] < 200
+			|| $response['headers']['response_code'] > 299
+		) {
 			$response['error'] = true;
 			return $response;
 		}
@@ -43,15 +46,17 @@ class HTTP {
 		$response = [];
 		$context = $this->build_context( method: 'POST', body: $data );
 
-		$this->set_error_handler();
 		$body = file_get_contents( $url, false, $context );
-		restore_error_handler();
 
 		$response['error'] = false;
 		$response['headers'] = self::parse_headers( $http_response_header );
 		$response['body'] = $body;
 
-		if ( $body === false ) {
+		if (
+			$body === false
+			|| $response['headers']['response_code'] < 200
+			|| $response['headers']['response_code'] > 299
+		) {
 			$response['error'] = true;
 			return $response;
 		}
@@ -108,18 +113,5 @@ class HTTP {
 		}
 
 		return $parsed;
-	}
-
-	private function set_error_handler() {
-		set_error_handler(
-			function (
-				int $errno,
-				string $errfile,
-				string $errline,
-				int $errcontext
-			) : bool|null {
-				return null;
-			}
-		);
 	}
 }

@@ -4,6 +4,7 @@
 - Provide default HTTP options
 - Default to HTTP/1.1
 - Run PHP lint as part of the tests
+- Use the `ignore_errors` option instead of the error handler to capture response error conditions
 
 ## 0.0.2 - 2023-04-08
 - Rename to HTTP
