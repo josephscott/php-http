@@ -8,6 +8,7 @@
 - Move everything to a single class
 - Add private build_context() method
 - List of default request headers, currently user_agent and accept
+- Include the HTTP response code in the list of response headers
 - Testing with phpstan
 
 ## 0.0.1 - 2023-04-06

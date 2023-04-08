@@ -12,7 +12,11 @@ class HTTP {
 	public function get( string $url, array $headers = [] ) {
 		$response = [];
 		$context = $this->build_context( 'GET' );
-		$body = file_get_contents( $url, false, $context );
+		$body = file_get_contents(
+			filename: $url,
+			use_include_path: false,
+			context: $context
+		);
 
 		$response['error'] = false;
 		$response['headers'] = self::parse_headers( $http_response_header );
@@ -77,6 +81,11 @@ class HTTP {
 
 	private function parse_headers( array $headers ) {
 		$parsed = [];
+
+		$response_code = array_shift( $headers );
+		if ( preg_match( '#HTTP/[0-9\.]+\s+([0-9]+)#', $response_code, $matches ) ) {
+			$headers[] = 'response_code: ' . (int) $matches[1];
+		}
 
 		foreach ( $headers as $header ) {
 			$parts = explode( ':', $header, 2 );
