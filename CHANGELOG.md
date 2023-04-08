@@ -10,6 +10,7 @@
 - List of default request headers, currently user_agent and accept
 - Include the HTTP response code in the list of response headers
 - Testing with phpstan
+- Testing with pest
 - Handle PHP warnings with failed HTTP requests
 
 ## 0.0.1 - 2023-04-06
