@@ -12,11 +12,14 @@ class HTTP {
 	public function get( string $url, array $headers = [] ) {
 		$response = [];
 		$context = $this->build_context( 'GET' );
+
+		$this->set_error_handler();
 		$body = file_get_contents(
 			filename: $url,
 			use_include_path: false,
 			context: $context
 		);
+		restore_error_handler();
 
 		$response['error'] = false;
 		$response['headers'] = self::parse_headers( $http_response_header );
@@ -33,7 +36,10 @@ class HTTP {
 	public function post( string $url, array $headers = [], array $data = [] ) {
 		$response = [];
 		$context = $this->build_context( method: 'POST', body: $data );
+
+		$this->set_error_handler();
 		$body = file_get_contents( $url, false, $context );
+		restore_error_handler();
 
 		$response['error'] = false;
 		$response['headers'] = self::parse_headers( $http_response_header );
@@ -95,5 +101,9 @@ class HTTP {
 		}
 
 		return $parsed;
+	}
+
+	private function set_error_handler() {
+		set_error_handler( function () { } );
 	}
 }
