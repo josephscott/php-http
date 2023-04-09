@@ -8,6 +8,8 @@
 - New test: `get: fail, 500`
 - Add timeout support, defaults to 90 seconds
 - New test: `get: timeout`
+- New public method: request().  This centralizes the file_get_contents() call into one place.
+- Update the get() and post() methods to use the new request() method
 
 ## 0.0.2 - 2023-04-08
 - Rename to HTTP

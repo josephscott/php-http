@@ -18,47 +18,38 @@ class HTTP {
 	public function __construct() { }
 
 	public function get( string $url, array $headers = [] ) {
-		$response = [
-			'error' => false,
-			'headers' => [],
-			'body' => ''
-		];
-		$context = $this->build_context( method: 'GET' );
-
-		// XXX: HACK
-		// Make Pest happy by suppressing the warnings that can happen
-		// I'd like to find a way to deal with warnings without using @
-		$body = @file_get_contents(
-			filename: $url,
-			use_include_path: false,
-			context: $context
+		$response = $this->request(
+			method: 'GET',
+			url: $url,
+			headers: $headers
 		);
-		if ( $body === false ) {
-			$response['error'] = true;
-			return $response;
-		}
-
-		$response['headers'] = self::parse_headers( $http_response_header );
-		$response['body'] = $body;
-
-		if (
-			$response['headers']['response_code'] < 200
-			|| $response['headers']['response_code'] > 299
-		) {
-			$response['error'] = true;
-			return $response;
-		}
 
 		return $response;
 	}
 
 	public function post( string $url, array $headers = [], array $data = [] ) {
+		$response = $this->request(
+			method: 'POST',
+			url: $url,
+			headers: $headers,
+			data: $data
+		);
+
+		return $response;
+	}
+
+	public function request(
+		string $method,
+		string $url,
+		array $headers = [],
+		array $data = []
+	) {
 		$response = [
 			'error' => false,
 			'headers' => [],
-			'body' => ''
+			'body' => '',
 		];
-		$context = $this->build_context( method: 'POST', body: $data );
+		$context = $this->build_context( method: $method, body: $data );
 
 		// XXX: HACK
 		// Make Pest happy by suppressing the warnings that can happen
