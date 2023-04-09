@@ -54,10 +54,15 @@ class HTTP {
 		// XXX: HACK
 		// Make Pest happy by suppressing the warnings that can happen
 		// I'd like to find a way to deal with warnings without using @
+		$start = microtime( true );
 		$body = @file_get_contents(
 			filename: $url,
 			use_include_path: false,
 			context: $context
+		);
+		$response['total_time'] = number_format(
+			( microtime( true ) - $start ),
+			6
 		);
 		if ( $body === false ) {
 			$response['error'] = true;
