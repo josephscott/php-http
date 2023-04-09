@@ -21,7 +21,15 @@ test( 'get: fail, 500', function() {
 test( 'get: timeout', function() {
 	$http = new HTTP();
 	$http->default_options['timeout'] = 3;
-	$response = $http->get( url: 'httpstat.us/200?sleep=3000' );
+	$response = $http->get( url: 'https://httpstat.us/200?sleep=3000' );
 
 	expect( $response['error'] )->toBe( true );
+} );
+
+test( 'get: slow', function() {
+	$http = new HTTP();
+	$response = $http->get( url: 'https://httpstat.us/200?sleep=3000' );
+
+	expect( $response['error'] )->toBe( false );
+	expect( $response['total_time'] )->toBeGreaterThan( 3 );
 } );
