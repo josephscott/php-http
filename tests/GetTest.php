@@ -17,3 +17,11 @@ test( 'get: fail, 500', function() {
 	expect( $response['error'] )->toBe( true );
 	expect( $response['headers']['response_code'] )->toBe( 500 );
 } );
+
+test( 'get: timeout', function() {
+	$http = new HTTP();
+	$http->default_options['timeout'] = 3;
+	$response = $http->get( url: 'httpstat.us/200?sleep=3000' );
+
+	expect( $response['error'] )->toBe( true );
+} );

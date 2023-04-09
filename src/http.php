@@ -7,6 +7,7 @@ class HTTP {
 		'method' => 'GET',
 		'header' => '',
 		'ignore_errors' => true,
+		'timeout' => 90,
 	];
 
 	public $default_headers = [
@@ -17,22 +18,31 @@ class HTTP {
 	public function __construct() { }
 
 	public function get( string $url, array $headers = [] ) {
-		$response = [];
-		$context = $this->build_context( 'GET' );
+		$response = [
+			'error' => false,
+			'headers' => [],
+			'body' => ''
+		];
+		$context = $this->build_context( method: 'GET' );
 
-		$body = file_get_contents(
+		// XXX: HACK
+		// Make Pest happy by suppressing the warnings that can happen
+		// I'd like to find a way to deal with warnings without using @
+		$body = @file_get_contents(
 			filename: $url,
 			use_include_path: false,
 			context: $context
 		);
+		if ( $body === false ) {
+			$response['error'] = true;
+			return $response;
+		}
 
-		$response['error'] = false;
 		$response['headers'] = self::parse_headers( $http_response_header );
 		$response['body'] = $body;
 
 		if (
-			$body === false
-			|| $response['headers']['response_code'] < 200
+			$response['headers']['response_code'] < 200
 			|| $response['headers']['response_code'] > 299
 		) {
 			$response['error'] = true;
@@ -43,18 +53,31 @@ class HTTP {
 	}
 
 	public function post( string $url, array $headers = [], array $data = [] ) {
-		$response = [];
+		$response = [
+			'error' => false,
+			'headers' => [],
+			'body' => ''
+		];
 		$context = $this->build_context( method: 'POST', body: $data );
 
-		$body = file_get_contents( $url, false, $context );
+		// XXX: HACK
+		// Make Pest happy by suppressing the warnings that can happen
+		// I'd like to find a way to deal with warnings without using @
+		$body = @file_get_contents(
+			filename: $url,
+			use_include_path: false,
+			context: $context
+		);
+		if ( $body === false ) {
+			$response['error'] = true;
+			return $response;
+		}
 
-		$response['error'] = false;
 		$response['headers'] = self::parse_headers( $http_response_header );
 		$response['body'] = $body;
 
 		if (
-			$body === false
-			|| $response['headers']['response_code'] < 200
+			$response['headers']['response_code'] < 200
 			|| $response['headers']['response_code'] > 299
 		) {
 			$response['error'] = true;

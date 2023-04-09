@@ -6,6 +6,8 @@
 - Run PHP lint as part of the tests
 - Use the `ignore_errors` option instead of the error handler to capture response error conditions
 - New test: `get: fail, 500`
+- Add timeout support, defaults to 90 seconds
+- New test: `get: timeout`
 
 ## 0.0.2 - 2023-04-08
 - Rename to HTTP
