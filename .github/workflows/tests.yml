@@ -11,6 +11,8 @@ jobs:
 
         - name: Instal PHP version
             uses: shivammathur/setup-php@v2
+            with:
+                extensions:
 
         - name: Install Dependencies
             run: composer install
