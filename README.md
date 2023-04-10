@@ -1,6 +1,6 @@
 # php-http
 
-<img src="https://github.com/josephscott/php-http/actions/workflows/tests.yml/badge.svg">
+<a href="https://github.com/josephscott/php-http/actions"><img src="https://github.com/josephscott/php-http/actions/workflows/tests.yml/badge.svg"></a>
 
 ## Install
 
