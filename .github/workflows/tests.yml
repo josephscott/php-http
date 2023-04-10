@@ -9,7 +9,7 @@ jobs:
         steps:
         - uses: actions/checkout@v3
 
-        - name: Instal PHP version
+        - name: Install PHP version
           uses: shivammathur/setup-php@v2
 
         - name: Install Dependencies
