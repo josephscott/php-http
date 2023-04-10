@@ -2,6 +2,7 @@
 declare( strict_types = 1 );
 
 class HTTP {
+	// https://www.php.net/manual/en/context.http.php
 	public $default_options = [
 		'protocol_version' => 1.1,
 		'method' => 'GET',

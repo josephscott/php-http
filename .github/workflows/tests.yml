@@ -1,0 +1,25 @@
+name: PHP-HTTP Tests
+
+on: [ push, pull_request ]
+
+jobs:
+    build-test:
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v3
+
+        - name: Instal PHP version
+            uses: shivammathur/setup-php@v2
+
+        - name: Install Dependencies
+            run: composer install
+
+        - name: PHP Lint
+            run: make lint
+
+        - name: PHPStan
+            run: make phpstan
+
+        - name: Pest
+            run: make pest 
