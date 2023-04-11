@@ -4,6 +4,7 @@
 - Github Actions for tests
 - Static method, HTTP::g() for GET
 - Static method, HTTP::p() for POST
+- New simple PHP server that the tests run against, all tests have been updated to use it
 
 ## 0.0.3 - 2023-04-10
 - Provide default HTTP options
