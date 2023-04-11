@@ -6,6 +6,13 @@ if ( strtolower( $_SERVER['REQUEST_METHOD'] ) !== $method ) {
 	exit;
 }
 
+$status = $_GET['status'] ?? null;
+$status = (int) $status;
+if ( $status && $status > 0 ) {
+	header( "HTTP/1.0 $status" );
+	exit;
+}
+
 $sleep = $_GET['sleep'] ?? 0;
 sleep( $sleep );
 
