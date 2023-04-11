@@ -18,6 +18,12 @@ class HTTP {
 
 	public function __construct() { }
 
+	public static function g( string $url, array $headers = [] ) {
+		$http = new HTTP();
+		$response = $http->get( $url, $headers );
+		return $response;
+	}
+
 	public function get( string $url, array $headers = [] ) {
 		$response = $this->request(
 			method: 'GET',
@@ -25,6 +31,12 @@ class HTTP {
 			headers: $headers
 		);
 
+		return $response;
+	}
+
+	public static function p( string $url, array $headers = [], array $data = [] ) {
+		$http = new HTTP();
+		$response = $http->post( $url, $headers, $data );
 		return $response;
 	}
 
