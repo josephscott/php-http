@@ -3,6 +3,7 @@
 ## ????
 - Github Actions for tests
 - Static method, HTTP::g() for GET
+- New test for HTTP::g()
 - Static method, HTTP::p() for POST
 - New simple PHP server that the tests run against, all tests have been updated to use it
 
