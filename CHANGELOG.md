@@ -1,6 +1,7 @@
 # Changelog
 
 ## ????
+- Notes on how to use the HTTP object and class
 
 ## 0.0.4 - 2023-04-12
 - Github Actions for tests
