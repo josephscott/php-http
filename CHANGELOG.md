@@ -2,6 +2,7 @@
 
 ## ????
 - Notes on how to use the HTTP object and class
+- Provide return types
 
 ## 0.0.4 - 2023-04-12
 - Github Actions for tests

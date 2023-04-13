@@ -18,13 +18,13 @@ class HTTP {
 
 	public function __construct() { }
 
-	public static function g( string $url, array $headers = [] ) {
+	public static function g( string $url, array $headers = [] ):array {
 		$http = new HTTP();
 		$response = $http->get( $url, $headers );
 		return $response;
 	}
 
-	public function get( string $url, array $headers = [] ) {
+	public function get( string $url, array $headers = [] ):array {
 		$response = $this->request(
 			method: 'GET',
 			url: $url,
@@ -34,13 +34,13 @@ class HTTP {
 		return $response;
 	}
 
-	public static function p( string $url, array $headers = [], array $data = [] ) {
+	public static function p( string $url, array $headers = [], array $data = [] ):array {
 		$http = new HTTP();
 		$response = $http->post( $url, $headers, $data );
 		return $response;
 	}
 
-	public function post( string $url, array $headers = [], array $data = [] ) {
+	public function post( string $url, array $headers = [], array $data = [] ):array {
 		$response = $this->request(
 			method: 'POST',
 			url: $url,
@@ -56,7 +56,7 @@ class HTTP {
 		string $url,
 		array $headers = [],
 		array $data = []
-	) {
+	):array {
 		$response = [
 			'error' => false,
 			'headers' => [],
@@ -124,7 +124,7 @@ class HTTP {
 		return $context;
 	}
 
-	private function parse_headers( array $headers ) {
+	private function parse_headers( array $headers ):array {
 		$parsed = [];
 
 		$response_code = array_shift( $headers );
