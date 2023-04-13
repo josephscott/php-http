@@ -1,6 +1,8 @@
 # Changelog
 
 ## ????
+
+## 0.0.4 - 2023-04-12
 - Github Actions for tests
 - Static method, HTTP::g() for GET
 - New test for HTTP::g()
