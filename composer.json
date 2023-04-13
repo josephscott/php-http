@@ -1,9 +1,16 @@
 {
+	"name": "josephscott/php-http",
+	"description": "A simple HTTP GET/POST wrapper for PHP, built on top of file_get_contents()",
+	"license": "MIT",
+	"require": {
+		"php": ">=8.1.0"
+	},
     "require-dev": {
         "phpstan/phpstan": "^1.10",
 		"pestphp/pest": "^2.4"
     },
     "config": {
+		"classmap-authoritative": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
