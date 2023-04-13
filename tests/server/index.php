@@ -14,6 +14,8 @@ if ( $status && $status > 0 ) {
 }
 
 $sleep = $_GET['sleep'] ?? 0;
+$sleep = (int) $sleep;
+error_log( "sleeping : $sleep" );
 sleep( $sleep );
 
 $out = [];
