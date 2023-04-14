@@ -6,6 +6,7 @@
 - New test for changing the default user agent
 - Support for HEAD requests via head() method
 - New test for head() method
+- Support for HEAD requests via h() method
 
 ## 0.0.4 - 2023-04-12
 - Github Actions for tests

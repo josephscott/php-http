@@ -34,6 +34,12 @@ class HTTP {
 		return $response;
 	}
 
+	public static function h( string $url, array $headers = [] ):array {
+		$http = new HTTP();
+		$response = $http->head( $url, $headers );
+		return $response;
+	}
+
 	public function head( string $url, array $headers = [] ):array {
 		$response = $this->request(
 			method: 'HEAD',
