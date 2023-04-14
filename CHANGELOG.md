@@ -8,6 +8,7 @@
 - New test for head() method
 - Support for HEAD requests via h() method
 - New test for h() method
+- New test for get with a URL that has no web server running
 
 ## 0.0.4 - 2023-04-12
 - Github Actions for tests

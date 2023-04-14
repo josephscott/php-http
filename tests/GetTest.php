@@ -46,3 +46,12 @@ test( 'get: custom user agent', function() {
 	expect( $response['error'] )->toBe( false );
 	expect( $body['headers']['user_agent'] )->toBe( $custom_ua );
 } );
+
+test( 'get: port with no web server', function() {
+	$http = new HTTP();
+	$response = $http->get( url: 'http://127.0.0.1:3456/?method=get' );
+
+	expect( $response['error'] )->toBe( true );
+	expect( $response['headers'] )->toBe( [] );
+	expect( $response['body'] )->toBe( '' );
+} );
