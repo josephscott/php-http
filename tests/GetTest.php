@@ -33,3 +33,16 @@ test( 'get: slow', function() {
 	expect( $response['error'] )->toBe( false );
 	expect( $response['total_time'] )->toBeGreaterThan( 3 );
 } );
+
+test( 'get: custom user agent', function() {
+	$custom_ua = 'pest test';
+
+	$http = new HTTP();
+	$http->default_headers['user_agent'] = $custom_ua;
+
+	$response = $http->get( url: 'http://127.0.0.1:7878/?method=get' );
+	$body = json_decode( $response['body'], true );
+
+	expect( $response['error'] )->toBe( false );
+	expect( $body['headers']['user_agent'] )->toBe( $custom_ua );
+} );
