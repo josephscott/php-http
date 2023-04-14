@@ -4,6 +4,7 @@
 - Notes on how to use the HTTP object and class
 - Provide return types
 - New test for changing the default user agent
+- Support for HEAD requests via head() method
 
 ## 0.0.4 - 2023-04-12
 - Github Actions for tests
