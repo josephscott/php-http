@@ -1,6 +1,6 @@
 # Changelog
 
-## ????
+## 0.0.5 - 2023-04-14
 - Notes on how to use the HTTP object and class
 - Provide return types
 - New test for changing the default user agent
