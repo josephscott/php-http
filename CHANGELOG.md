@@ -2,6 +2,7 @@
 
 ## ????
 - Support for PUT requests via put() method
+- New test for put() method
 
 ## 0.0.5 - 2023-04-14
 - Notes on how to use the HTTP object and class
