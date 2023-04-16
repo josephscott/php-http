@@ -1,5 +1,8 @@
 # Changelog
 
+## ????
+- Support for PUT requests via put() method
+
 ## 0.0.5 - 2023-04-14
 - Notes on how to use the HTTP object and class
 - Provide return types
