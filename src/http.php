@@ -67,6 +67,12 @@ class HTTP {
 		return $response;
 	}
 
+	public static function pu( string $url, array $headers = [], array $data = [] ):array {
+		$http = new HTTP();
+		$response = $http->put( $url, $headers, $data );
+		return $response;
+	}
+
 	public function put( string $url, array $headers = [], array $data = [] ):array {
 		$response = $this->request(
 			method: 'PUT',
