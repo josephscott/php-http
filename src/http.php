@@ -141,16 +141,13 @@ class HTTP {
 
 		$headers = array_merge( $this->default_headers, $headers );
 
-		if ( $method === 'POST' && !isset( $headers['Content-Type'] ) ) {
+		if ( !empty( $body ) ) {
+			$options['http']['content'] = http_build_query( $body );
 			$headers['Content-Type'] = 'application/x-www-form-urlencoded';
 		}
 
 		foreach ( $headers as $header_name => $header_value ) {
 			$options['http']['header'] .= "$header_name: $header_value\r\n";
-		}
-
-		if ( !empty( $body ) ) {
-			$options['http']['content'] = http_build_query( $body );
 		}
 
 		$context = stream_context_create( $options );
