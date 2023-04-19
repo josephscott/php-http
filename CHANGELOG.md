@@ -1,6 +1,6 @@
 # Changelog
 
-## ????
+## 0.0.6 - 2023-04-18
 - Support for PUT requests via put() method
 - New test for put() method
 - Support for PUT requests via pu() method
