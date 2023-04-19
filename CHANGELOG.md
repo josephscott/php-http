@@ -2,6 +2,7 @@
 
 ## ????
 - Simplify body encoding checks
+- Makefile test failure cleanup improved
 
 ## 0.0.6 - 2023-04-18
 - Support for PUT requests via put() method

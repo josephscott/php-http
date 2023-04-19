@@ -30,7 +30,7 @@ pest: server-start
 	@echo
 	@echo "--> pest"
 	@echo
-	./vendor/bin/pest
+	bash -c "./vendor/bin/pest || kill -9 `cat tests/server/pid.txt`"
 	@echo
 	@echo "--> Test Server: stopping"
 	@echo
