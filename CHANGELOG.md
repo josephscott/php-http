@@ -6,6 +6,7 @@
 - Readme examples have been updated to use the new API
 - Simplify body encoding checks
 - Makefile test failure cleanup improved
+- Add `Connection: close` to the default headers to avoid keep-alive delays
 
 ## 0.0.6 - 2023-04-18
 - Support for PUT requests via put() method
