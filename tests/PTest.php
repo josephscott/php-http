@@ -1,8 +1,8 @@
 <?php
 declare( strict_types = 1 );
 
-test( 'post', function() {
-	$response = HTTP::p( url: 'http://127.0.0.1:7878/?method=post' );
+test( 'HTTP::post', function() {
+	$response = HTTP::post( url: 'http://127.0.0.1:7878/?method=post' );
 
 	expect( $response['error'] )->toBe( false );
 	expect( $response['headers']['response_code'] )->toBe( 200 );

@@ -1,6 +1,7 @@
 # Changelog
 
 ## ????
+- Major changes to the API, reducing the amount of code and making the API more consistent across the static and object methods
 - Simplify body encoding checks
 - Makefile test failure cleanup improved
 

@@ -18,64 +18,33 @@ class HTTP {
 
 	public function __construct() { }
 
-	public static function g( string $url, array $headers = [] ):array {
-		$http = new HTTP();
-		$response = $http->get( $url, $headers );
-		return $response;
-	}
-
-	public function get( string $url, array $headers = [] ):array {
-		$response = $this->request(
-			method: 'GET',
-			url: $url,
-			headers: $headers
+	public function __call(
+		string $name,
+		array $args
+	):array {
+		$response = $this->make_request(
+			name: $name,
+			args: $args
 		);
-
 		return $response;
 	}
 
-	public static function h( string $url, array $headers = [] ):array {
+	public static function __callStatic( string $name, array $args ) {
 		$http = new HTTP();
-		$response = $http->head( $url, $headers );
-		return $response;
-	}
-
-	public function head( string $url, array $headers = [] ):array {
-		$response = $this->request(
-			method: 'HEAD',
-			url: $url,
-			headers: $headers
+		$response = $http->make_request(
+			name: $name,
+			args: $args
 		);
-
 		return $response;
 	}
 
-	public static function p( string $url, array $headers = [], array $data = [] ):array {
-		$http = new HTTP();
-		$response = $http->post( $url, $headers, $data );
-		return $response;
-	}
+	public function make_request( string $name, array $args ) {
+		$url = $args['url'] ?? $args[0];
+		$headers = $args['headers'] ?? $args[1] ?? [];
+		$data = $args['data'] ?? $args[2] ?? [];
 
-	public function post( string $url, array $headers = [], array $data = [] ):array {
 		$response = $this->request(
-			method: 'POST',
-			url: $url,
-			headers: $headers,
-			data: $data
-		);
-
-		return $response;
-	}
-
-	public static function pu( string $url, array $headers = [], array $data = [] ):array {
-		$http = new HTTP();
-		$response = $http->put( $url, $headers, $data );
-		return $response;
-	}
-
-	public function put( string $url, array $headers = [], array $data = [] ):array {
-		$response = $this->request(
-			method: 'PUT',
+			method: strtoupper( $name ),
 			url: $url,
 			headers: $headers,
 			data: $data
