@@ -36,10 +36,10 @@ test( 'get: timeout', function() {
 
 test( 'get: slow', function() {
 	$http = new HTTP();
-	$response = $http->get( url: 'http://127.0.0.1:7878/?method=get&sleep=4' );
+	$response = $http->get( url: 'http://127.0.0.1:7878/?method=get&sleep=1' );
 
 	expect( $response['error'] )->toBe( false );
-	expect( $response['total_time'] )->toBeGreaterThan( 3 );
+	expect( $response['total_time'] )->toBeGreaterThan( 1 );
 } );
 
 test( 'get: custom user agent', function() {

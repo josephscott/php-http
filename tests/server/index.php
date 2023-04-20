@@ -16,6 +16,7 @@ if ( $status && $status > 0 ) {
 $sleep = $_GET['sleep'] ?? 0;
 $sleep = (int) $sleep;
 sleep( $sleep );
+usleep( 100 ); // make sure we exceed the sleep amount
 
 $out = [];
 foreach ( apache_request_headers() as $k => $v ) {
