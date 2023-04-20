@@ -10,6 +10,14 @@ test( 'get', function() {
 	expect( $response['headers']['content-type'] )->toBe( 'application/json' );
 } );
 
+test( 'get: static', function() {
+	$response = HTTP::get( url: 'http://127.0.0.1:7878/?method=get' );
+
+	expect( $response['error'] )->toBe( false );
+	expect( $response['headers']['response_code'] )->toBe( 200 );
+	expect( $response['headers']['content-type'] )->toBe( 'application/json' );
+} );
+
 test( 'get: fail, 500', function() {
 	$http = new HTTP();
 	$response = $http->get( url: 'http://127.0.0.1:7878/?method=get&status=500' );
