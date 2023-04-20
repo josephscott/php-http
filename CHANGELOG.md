@@ -9,6 +9,7 @@
 - Add `Connection: close` to the default headers to avoid keep-alive delays
 - Limit HTTP calls to the list of known methods
 - Reduce the `get: slow` sleep time, reducing the amount of time the test run takes
+- New tests for delete() method
 
 ## 0.0.6 - 2023-04-18
 - Support for PUT requests via put() method
