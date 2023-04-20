@@ -23,7 +23,7 @@ if ( $response['error'] ) {
 	// Handle request error
 }
 
-// POST
+// Object style POST
 $response = $http->post(
 	url: 'https://httpbin.org/post',
 	headers: [ 'x-custom' => 'thing' ],
@@ -31,10 +31,10 @@ $response = $http->post(
 );
 
 // Static style GET
-$response = HTTP::g( url: 'https://httpbin.org/get' );
+$response = HTTP::get( url: 'https://httpbin.org/get' );
 
-// Post
-$response = HTTP::p( url: 'https://httpbin.org/post' );
+// Static style Post
+$response = HTTP::post( url: 'https://httpbin.org/post' );
 ```
 
 ### The response array
