@@ -65,6 +65,23 @@ class HTTP {
 			'headers' => [],
 			'body' => '',
 		];
+
+		// https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
+		$valid_methods = [
+			'GET',
+			'HEAD',
+			'POST',
+			'PUT',
+			'DELETE',
+			'CONNECT',
+			'OPTIONS',
+			'TRACE',
+			'PATCH'
+		];
+		if ( !in_array( $method, $valid_methods, true ) ) {
+			return $response;
+		}
+
 		$context = $this->build_context( method: $method, body: $data );
 
 		// XXX: HACK

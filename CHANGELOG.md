@@ -7,6 +7,7 @@
 - Simplify body encoding checks
 - Makefile test failure cleanup improved
 - Add `Connection: close` to the default headers to avoid keep-alive delays
+- Limit HTTP calls to the list of known methods
 
 ## 0.0.6 - 2023-04-18
 - Support for PUT requests via put() method
