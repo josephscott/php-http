@@ -30,6 +30,7 @@ pest: server-start
 	@echo
 	@echo "--> pest"
 	@echo
+	# Make sure that we always stop the web server, even if tests fail
 	bash -c "./vendor/bin/pest || kill -9 `cat tests/server/pid.txt`"
 	@echo
 	@echo "--> Test Server: stopping"
