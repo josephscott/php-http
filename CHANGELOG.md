@@ -1,5 +1,8 @@
 # Changelog
 
+## ????
+- Try to work with composer via classmap
+
 ## 0.1.0 - 2023-04-20
 - Major changes to the API, reducing the amount of code and making the API more consistent across the static and object methods
 - Static tests have been merged into a single set per verb

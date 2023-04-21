@@ -10,9 +10,9 @@
 		"pestphp/pest": "^2.4"
     },
 	"autoload": {
-		"psr-4": {
-			"": "src"
-		}
+		"classmap": [
+			"src/http.php"
+		]
 	},
     "config": {
 		"classmap-authoritative": true,
