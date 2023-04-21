@@ -6,7 +6,9 @@ For those times when you need a simple set of HTTP request functions, with no ex
 
 ## Install
 
-The quick approach is to grab a copy of `https://raw.githubusercontent.com/josephscott/php-http/trunk/src/http.php` and `require` it as needed.
+`composer require josephscott/php-http`
+
+Alternatively you can grab a copy of `https://raw.githubusercontent.com/josephscott/php-http/trunk/src/http.php` and `require` it as needed.
 
 ## Testing
 `make test`
@@ -14,7 +16,7 @@ The quick approach is to grab a copy of `https://raw.githubusercontent.com/josep
 ## Usage
 
 ```php
-require __DIR__ . '/lib/http.php'; // or where ever you have a copy
+require __DIR__ . '/vendoer/autoload.php';
 
 // Object style GET
 $http = new HTTP();
